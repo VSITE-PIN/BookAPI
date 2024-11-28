@@ -13,7 +13,7 @@ namespace BookAPI.Migrations
         {
             migrationBuilder.CreateTable(
                 name: "Books",
-                columns: table => new
+                columns: table => new 
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
