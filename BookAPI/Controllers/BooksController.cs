@@ -33,6 +33,19 @@ namespace BookAPI.Controllers
             var book = BooksService.GetBookById(id);
             return Ok(book);
         }
+        [HttpPut("id")]
+        public IActionResult UpdateBookById([FromQuery] int id,[FromBody] BookVM bookVM)
+        {
+            var updatedBook = BooksService.UpdateBookById(id, bookVM);
+            return Ok(updatedBook);
+        }
+        [HttpDelete("id")]
+        public IActionResult DeleteBook([FromQuery] int id)
+        {
+            BooksService.DeleteBook(id);
+            return Ok();
+        }
+
 
     }
 }

@@ -36,7 +36,30 @@ namespace BookAPI.Services
         {
             return _context.Books.FirstOrDefault(x => x.Id == id);
         }
+        public Book UpdateBookById(int id, BookVM bookVM)
+        {
+            var book = _context.Books.FirstOrDefault(x => x.Id == id);
+            if (book != null)
+            {
+                book.Title = bookVM.Title;
+                bookVM.Description = bookVM.Description;
+                book.IsRead = bookVM.IsRead;
+                book.DateRead = bookVM.IsRead ? bookVM.DateRead : null;
+                book.Rate = bookVM.IsRead ? bookVM.Rate : null;
+                book.Genre = bookVM.Genre;
+                book.Author = bookVM.Author;
+                book.CoverPictureURL = bookVM.CoverPictureURL;
+                _context.SaveChanges();
+            }
+            return book;
+        }
 
+        public void DeleteBook(int id)
+        {
+            var book = _context.Books.FirstOrDefault(x => x.Id == id);
+            _context.Books.Remove(book);
+            _context.SaveChanges();
+        }
 
 
     }
