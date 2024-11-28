@@ -8,7 +8,9 @@
         public DateTime? DateRead { get; set; }
         public int? Rate { get; set; }
         public string Genre { get; set; }
-        public string Author { get; set; }
         public string CoverPictureURL { get; set; }
+        public int PublihserId { get; set; }
+        public List<int> AuthorIds { get; set; }
+
     }
 }
