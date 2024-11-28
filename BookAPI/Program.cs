@@ -1,4 +1,5 @@
 using BookAPI.Data;
+using BookAPI.Services;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -11,6 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnString")
     ?? throw new InvalidOperationException("Connection string DefaultConnString not found.")));
 
+builder.Services.AddScoped<BooksService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
