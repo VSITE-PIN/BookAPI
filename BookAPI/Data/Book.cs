@@ -12,4 +12,8 @@
     public string Author { get; set; }
     public string CoverPictureURL { get; set; }
     public DateTime DateAdded { get; set; }
+    public int PublisherId { get; set; }
+    public Publisher Publisher { get; set; }
+    public List<BookAuthor> BookAuthors { get; set; }
+
 }
