@@ -11,7 +11,7 @@ public class AuthorsController : ControllerBase
     {
         AuthorsService = authorsService;
     }
-    [HttpPost]
+    
     [HttpGet("id")]
     public IActionResult GetAuthor([FromQuery] int id)
     {
@@ -19,7 +19,8 @@ public class AuthorsController : ControllerBase
         return Ok(author);
     }
 
-    public IActionResult AddAuthor([FromBody] AuthorVM author)
+	[HttpPost]
+	public IActionResult AddAuthor([FromBody] AuthorVM author)
     {
         AuthorsService.AddAuthor(author);
         return Ok();

@@ -11,14 +11,15 @@ public class PublishersController : ControllerBase
     {
         PublishersService = publishersService;
     }
-    [HttpPost]
+    
     [HttpDelete("id")]
     public IActionResult DeletePublisher([FromQuery] int id)
     {
         PublishersService.DeletePublisher(id);
         return Ok();
     }
-    public IActionResult AddPublisher([FromBody] PublisherVM publisher)
+	[HttpPost]
+	public IActionResult AddPublisher([FromBody] PublisherVM publisher)
     {
         PublishersService.AddPublisher(publisher);
         return Ok();
