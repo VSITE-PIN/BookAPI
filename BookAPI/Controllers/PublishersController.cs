@@ -20,5 +20,13 @@ namespace BookAPI.Controllers
             PublishersService.AddPublisher(publisher);
             return Ok();
         }
+
+        [HttpDelete("id")]
+        public IActionResult DeletePublisher([FromQuery] int id)
+        {
+            PublishersService.DeletePublisher(id);
+            return Ok();
+        }
+
     }
 }

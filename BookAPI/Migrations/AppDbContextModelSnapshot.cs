@@ -36,7 +36,7 @@ namespace BookAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("BookAPI.Data.Book", b =>
@@ -89,7 +89,7 @@ namespace BookAPI.Migrations
 
                     b.HasIndex("PublisherId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("BookAPI.Data.BookAuthor", b =>
@@ -112,7 +112,7 @@ namespace BookAPI.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("BooksAuthors");
+                    b.ToTable("BooksAuthors", (string)null);
                 });
 
             modelBuilder.Entity("BookAPI.Data.Publisher", b =>
@@ -129,7 +129,7 @@ namespace BookAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publishers");
+                    b.ToTable("Publishers", (string)null);
                 });
 
             modelBuilder.Entity("BookAPI.Data.Book", b =>
