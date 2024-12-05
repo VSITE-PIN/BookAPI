@@ -16,6 +16,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     ?? throw new InvalidOperationException("Connection string DefaultConnString not found.")));
 
 builder.Services.AddScoped<BooksService>();
+builder.Services.AddScoped<PublishersService>();
+builder.Services.AddScoped<AuthorsService>();
+
 
 var app = builder.Build();
 

@@ -20,11 +20,22 @@ namespace BookAPI.Services
                 DateRead = book.IsRead ? book.DateRead : null,
                 Rate = book.IsRead ? book.Rate : null,
                 Genre = book.Genre,
-                Author = book.Author,
                 CoverPictureURL = book.CoverPictureURL,
                 DateAdded = DateTime.Now,
+                PublisherId = book.PublisherId
             };
             _context.Books.Add(newBook);
+            _context.SaveChanges();
+
+            foreach (var id in book.AuthorIds)
+            {
+                var bookAuthor = new BookAuthor()
+                {
+                    BookId = newBook.Id,
+                    AuthorId = id
+                };
+                _context.BooksAuthors.Add(bookAuthor);
+            }
             _context.SaveChanges();
         }
         public List<Book> GetAllBooks()
@@ -46,7 +57,6 @@ namespace BookAPI.Services
                 book.DateRead = bookVM.IsRead ? bookVM.DateRead : null;
                 book.Rate = bookVM.IsRead ? bookVM.Rate : null;
                 book.Genre = bookVM.Genre;
-                book.Author = bookVM.Author;
                 book.CoverPictureURL = bookVM.CoverPictureURL;
                 _context.SaveChanges();
             }
