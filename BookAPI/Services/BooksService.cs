@@ -60,5 +60,24 @@ namespace BookAPI.Services
             _context.Books.Remove(book);
             _context.SaveChanges();
         }
+
+        public BookWithAuthorsVM GetBookByI(int id)
+        {
+            var book = _context.Books.Where(n => n.Id == id).Select(book => new
+            BookWithAuthorsVM()
+            {
+                Title = book.Title,
+                Description = book.Description,
+                IsRead = book.IsRead,
+                DateRead = book.IsRead ? book.DateRead : null,
+                Rate = book.IsRead ? book.Rate : null,
+                Genre = book.Genre,
+                CoverPictureURL = book.CoverPictureURL,
+                PublihserName = book.Publisher.Name,
+                AuthorNames =
+            book.BookAuthors.Select(x => x.Author.FullName).ToList()
+            }).FirstOrDefault();
+            return book;
+        }
     }
 }
