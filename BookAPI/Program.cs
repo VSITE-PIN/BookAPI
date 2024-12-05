@@ -9,6 +9,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnString")
         ?? throw new InvalidOperationException("Connection stringDefaultConnString not found.")));
 
+builder.Services.AddScoped<PublishersService>();
+builder.Services.AddScoped<AuthorsService>();
+
 builder.Services.AddScoped<BooksService>();
 
 builder.Services.AddControllers();
