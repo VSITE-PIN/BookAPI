@@ -7,6 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnString") 
     ?? throw new InvalidOperationException("Connection stringDefaultConnString not found.")));
+//add publisher
+builder.Services.AddScoped<PublishersService>();
+//add author
+builder.Services.AddScoped<AuthorsService>();
+
 
 builder.Services.AddScoped<BooksService>();
 

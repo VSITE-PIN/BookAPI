@@ -58,6 +58,8 @@ namespace BookAPI.Controllers
             public string Genre { get; set; }
             public string Author { get; set; }
             public string CoverPictureURL { get; set; }
+            public int PublihserId { get; internal set; }
+            public IEnumerable<object> AuthorIds { get; internal set; }
         }
 
     }
