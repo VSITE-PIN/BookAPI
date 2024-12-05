@@ -14,10 +14,18 @@ namespace BookAPI.Controllers
         {
             PublishersService = publishersService;
         }
+
         [HttpPost]
         public IActionResult AddPublisher([FromBody] PublisherVM publisher)
         {
             PublishersService.AddPublisher(publisher);
+            return Ok();
+        }
+
+        [HttpDelete("id")]
+        public IActionResult DeletePublisher([FromQuery] int id)
+        {
+            PublishersService.DeletePublisher(id);
             return Ok();
         }
     }

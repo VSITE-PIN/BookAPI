@@ -14,12 +14,21 @@ namespace BookAPI.Controllers
         {
             AuthorsService = authorsService;
         }
+
         [HttpPost]
         public IActionResult AddAuthor([FromBody] AuthorVM author)
         {
             AuthorsService.AddAuthor(author);
             return Ok();
         }
+
+        [HttpGet("id")]
+        public IActionResult GetAuthor([FromQuery] int id)
+        {
+            var author = AuthorsService.GetAuthorWithBooks(id);
+            return Ok(author);
+        }
+
 
     }
 }
