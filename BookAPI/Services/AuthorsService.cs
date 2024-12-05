@@ -20,5 +20,16 @@ namespace BookAPI.Services
             _context.SaveChanges();
         }
 
+        public AuthorWithBooksVM GetAuthorWithBooks(int id)
+        {
+            var author = _context.Authors.Where(n => n.Id == id).Select(n => new AuthorWithBooksVM()
+            {
+                FullName = n.FullName,
+                Books = n.BookAuthors.Select(n => n.Book.Title).ToList()
+            }
+            ).FirstOrDefault();
+            return author;
+        }
+
     }
 }
