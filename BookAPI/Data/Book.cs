@@ -19,6 +19,11 @@
         public int PublisherId { get; set; }
         public Publisher? Publisher { get; set; }
         public List<BookAuthor> BookAuthor { get; set; }
+        public object AuthorNames { get; internal set; }
+
+        internal class IsRead
+        {
+        }
     }
 
 }

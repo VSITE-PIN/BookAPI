@@ -1,4 +1,5 @@
-﻿namespace BookAPI.ViewModel
+﻿
+namespace BookAPI.ViewModel
 { 
         public class BookVM
         {
@@ -29,5 +30,9 @@
             public string? Genre { get; set; }
             public string? Author { get; set; }
             public string? CoverPictureURL { get; set; }
-        }
+            public int PublihserId { get; set; }
+            //više autora za istu knjigu 
+            public List<int> AuthorIds { get; set; }
+        public IEnumerable<object> BookAuthors { get; internal set; }
+    }
 }

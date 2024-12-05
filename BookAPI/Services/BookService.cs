@@ -10,24 +10,59 @@ namespace BookAPI.Services
         {
             _context = context;
         }
-        public void AddBook(BookVM book)
+        public BookVM AddBook(BookVM book)
         {
             var newBook = new Book()
             {
                 Title = book.Title,
                 Description = book.Description,
                 IsRead = book.IsRead,
-                DateRead = book.IsRead ? book.GetDateRead() : null,
+                DateRead = book.GetDateRead(),
                 Rate = book.IsRead ? book.Rate : null,
                 Genre = book.Genre,
                 Author = book.Author,
                 CoverPictureURL = book.CoverPictureURL,
                 DateAdded = DateTime.Now,
-            };
-            _context.Books.Add(newBook);
-            _context.SaveChanges();
+                PublisherId = book.PublihserId,
+                AuthorNames = book.BookAuthors.Select(static x =>
+                {
+                    return x.Author.FullName;
+                })
+                .ToList()
+      
+               
+
+            FirstOrDefault();
+
+            return book;
+
+
+        };
+
+        private void FirstOrDefault()
+        {
+            throw new NotImplementedException();
         }
-        public List<Book> GetAllBooks()
+
+        _context.Books.Add(newBook);
+            _context.SaveChanges();
+            //nakon što smo dodali knjigu u bazu imamo njen Id pa možemo puniti BookAuthor 
+            //tablicu
+            foreach (var id in book.AuthorIds)
+            {
+                var bookAuthor = new BookAuthor()
+                {
+                    BookId = newBook.Id,
+                    AuthorId = id
+                };
+        private Book newBook;
+
+        _context.BooksAuthors.Add(bookAuthor);
+            }
+            _context.SaveChanges();
+
+    }
+    public List<Book> GetAllBooks()
         {
             return _context.Books.ToList();
         }
